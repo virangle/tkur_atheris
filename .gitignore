@@ -1,0 +1,9 @@
+build/
+dist/
+artifacts/
+style-preview/
+wheel-check/
+__pycache__/
+*.egg-info/
+*.pyc
+*.whl

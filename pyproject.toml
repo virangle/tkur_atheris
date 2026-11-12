@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tkur-atheris"
+version = "0.1.0"
+description = "Atheris-compatible frontend for TKUR's shared libFuzzer stall timers"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+dependencies = ["atheris==3.0.0"]
+
+[project.scripts]
+tkur_atheris = "tkur_atheris.__main__:main"
+tkur-atheris = "tkur_atheris.__main__:main"
+
+[tool.setuptools]
+packages = ["tkur_atheris"]
