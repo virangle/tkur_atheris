@@ -36,6 +36,15 @@ def main():
     parser.add_argument("--backend-only", action="store_true", help="install rebuilt upstream Atheris only; skip overlay install/probe for Docker cache layering")
     parser.add_argument("--sdist", type=Path, help="optional offline source tarball, exact SHA256 required")
     args = parser.parse_args()
+    if not args.libfuzzer.is_file():
+        parser.error(
+            "PIC no_main archive not found: " + str(args.libfuzzer) +
+            ". Build the sibling tkur_libfuzzer checkout with CMake first: "
+            "cmake -S ../tkur_libfuzzer -B ../tkur_libfuzzer/build "
+            "-DCMAKE_CXX_COMPILER=clang++-18 && "
+            "cmake --build ../tkur_libfuzzer/build --parallel 2; "
+            "or pass --libfuzzer /absolute/path/libclang_rt.fuzzer_no_main.a"
+        )
     archive = args.libfuzzer.resolve(strict=True)
     initial_archive_sha256 = hashlib.sha256(archive.read_bytes()).hexdigest()
     build = args.build_dir.resolve()

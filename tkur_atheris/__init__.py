@@ -12,7 +12,7 @@ import subprocess
 import sys
 from typing import Sequence
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 _MAX_SECONDS = 2**31 - 1
 _ALIASES = {"--new-stall": "new_stall", "--cov-stall": "cov_stall"}
 
@@ -91,7 +91,7 @@ print(json.dumps({"atheris_version": version("atheris"), "runtime": spec.origin,
     if probe.returncode != 0:
         raise RuntimeError(
             "Atheris has no compatible TKUR libFuzzer stall ABI; run "
-            "components/tkur_atheris/build_backend.py with the patched PIC "
+            "build_backend.py from the tkur_atheris source checkout with the patched PIC "
             f"no_main archive first (probe status {probe.returncode})"
         )
     return json.loads(probe.stdout)
